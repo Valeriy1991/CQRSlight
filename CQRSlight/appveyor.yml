@@ -1,0 +1,7 @@
+﻿configuration: Release
+
+# restore Nuget packages before running MSBuild
+before build:
+    - nuget restore
+
+# package project
