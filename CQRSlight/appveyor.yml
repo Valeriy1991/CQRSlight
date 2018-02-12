@@ -1,7 +1,19 @@
-﻿configuration: Release
+﻿version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
 
 # restore Nuget packages before running MSBuild
 before build:
     - nuget restore
 
-# package project
+build:
+    publish_nuget: true
+    verbosity: minimal
+
+notifications:
+    - provider: Slack
+    incoming_webhook: https://hooks.slack.com/services/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
+    channel: builds
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
