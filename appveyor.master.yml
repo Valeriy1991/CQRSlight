@@ -1,7 +1,7 @@
 ﻿version: 1.0.{build}
 
 branches:
-  except:
+  only:
   - master
 
 image: Visual Studio 2017
