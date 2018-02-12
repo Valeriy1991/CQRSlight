@@ -7,8 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSlight", "CQRSlight\CQRS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26271BEA-A5A8-4AD8-84E7-1CAD02F05783}"
 	ProjectSection(SolutionItems) = preProject
-		appveyor.dev.yml = appveyor.dev.yml
 		appveyor.master.yml = appveyor.master.yml
+		appveyor.yml = appveyor.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
