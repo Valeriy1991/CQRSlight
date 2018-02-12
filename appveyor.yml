@@ -3,8 +3,8 @@ image: Visual Studio 2017
 configuration: Release
 
 # restore Nuget packages before running MSBuild
-before build:
-- nuget restore
+before_build:
+  - nuget restore
 
 build:
   publish_nuget: true
