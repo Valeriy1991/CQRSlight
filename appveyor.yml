@@ -12,7 +12,7 @@ build:
 
 
 notifications:
-- provider: Slack
+ - provider: Slack
     incoming_webhook: https://hooks.slack.com/services/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
     channel: builds
     on_build_success: true
