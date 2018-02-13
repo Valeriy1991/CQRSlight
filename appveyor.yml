@@ -3,7 +3,9 @@
   
 version: 1.0.0-$(version_suffix){build}
 
+# branches to build
 branches:
+  # blacklist
   except:
   - master
 
@@ -27,6 +29,28 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal
+
+artifacts:
+  #path: CQRSlight\bin\$(configuration)\**\*.nupkg
+  path: '**\*.nupkg'
+
+#deploy:
+# - provider: NuGet
+#   server: https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3
+#   api_key:
+#    secure: bfsoe95844c15naapbmlwayo
+#   skip_symbols: false
+#   symbol_server: https://your.symbol.server/feed
+#   artifact: MyPackage.nupkg
+
+# # Deploy to GitHub Releases
+# - provider: GitHub
+#   artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
+#   draft: false
+#   prerelease: false
+#   on:
+#     branch: master                # release from master branch only
+#     appveyor_repo_tag: true       # deploy on tag push only 
   
 # send notification to Slack about build results
 notifications:
