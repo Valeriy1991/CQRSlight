@@ -6,16 +6,26 @@ branches:
 
 image: Visual Studio 2017
 configuration: Release
+# Patch .NET Core/Standard *.csproj files for versioning:
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
-# restore Nuget packages before running MSBuild
+
+# restore Nuget packages before build:
 before_build:
 - nuget restore
 
 build:
   publish_nuget: true
   verbosity: minimal
-
-
+  
+# send notification to Slack about build results
 notifications:
  - provider: Slack
    incoming_webhook: https://hooks.slack.com/services/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
