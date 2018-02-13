@@ -1,6 +1,6 @@
 ﻿environment:
   version_suffix: alpha
-  nuget_api_key: JFqm564XSwXAcENtDRSXLr4Z5Z+AyvKxMUwiN2XeEbg=
+  nuget_api_key: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7
   
 version: 1.0.0-$(version_suffix){build}
 
@@ -48,7 +48,7 @@ artifacts:
 
 deploy:
  - provider: NuGet
-   server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
+   #server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
    api_key:
     secure: '{nuget_api_key}'
    skip_symbols: true #false
