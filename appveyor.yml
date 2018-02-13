@@ -28,14 +28,15 @@ before_build:
 - nuget restore
 
 build:
-  publish_nuget: true
+  publish_nuget: true # package projects with .nuspec files and push to artifacts
+  #publish_nuget_symbols: true # generate and publish NuGet symbol packages
   verbosity: minimal
 
 artifacts:
  #- path: CQRSlight\bin\$(configuration)\**\*.nupkg
  - path: '**\*.nupkg'  
  # For test
- - path: CQRSlight\*.csproj
+ #- path: CQRSlight\*.csproj
 
 deploy:
  - provider: NuGet
