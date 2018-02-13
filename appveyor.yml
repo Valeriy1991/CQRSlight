@@ -1,6 +1,6 @@
 ﻿environment:
   version_suffix: alpha
-  nuget_api_key: wk6IW8a6dwNs3kYmsFJDX2axqRt6fBE3A7X9MYptAp8=
+  nuget_api_key: JQlMuObdYNqWyaCqeo5M8jV9/XAYw1W45XjYdfkOoLk=
   
 version: 1.0.0-$(version_suffix){build}
 
@@ -48,9 +48,9 @@ artifacts:
 
 deploy:
  - provider: NuGet
-   server: https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3 # remove to push to NuGet.org
+   server: https://ci.appveyor.com/nuget/valeriy1991-m0v6eh5rj9mv # remove to push to NuGet.org
    api_key:
-    secure: wk6IW8a6dwNs3kYmsFJDX2axqRt6fBE3A7X9MYptAp8= # '{nuget_api_key}'
+    secure: JQlMuObdYNqWyaCqeo5M8jV9/XAYw1W45XjYdfkOoLk= # '{nuget_api_key}'
    skip_symbols: true #false
    # symbol_server: https://your.symbol.server/feed
    artifact: /.*\.nupkg/
