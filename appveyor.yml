@@ -48,12 +48,19 @@ artifacts:
 
 deploy:
  - provider: NuGet
-   #server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
-   server: #https://api.nuget.org/v3/index.json
+   name: dev
+   server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
+   api_key:
+    secure: m9mXfgL3RpGeznuLZm94nyhU7+Awk2jr5eddNy8Sw8Y=
+   skip_symbols: true
+   artifact: /.*\.nupkg/
+
+ - provider: NuGet
+   name: production
+   server: 
    api_key:
     secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
-   skip_symbols: true #false
-   # symbol_server: https://your.symbol.server/feed
+   skip_symbols: true
    artifact: /.*\.nupkg/
 
 # # Deploy to GitHub Releases
