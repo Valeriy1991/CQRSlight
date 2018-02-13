@@ -6,7 +6,6 @@ version: 1.0.0-$(version_suffix){build}
 
 # branches to build
 branches:
-  # blacklist
   except:
   - master
 
@@ -55,13 +54,13 @@ deploy:
    skip_symbols: true
    artifact: /.*\.nupkg/
 
- - provider: NuGet
-   name: production
-   server: 
-   api_key:
-    secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
-   skip_symbols: true
-   artifact: /.*\.nupkg/
+# - provider: NuGet
+#   name: production
+#   server: 
+#   api_key:
+#    secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
+#   skip_symbols: true
+#   artifact: /.*\.nupkg/
 
 # # Deploy to GitHub Releases
 # - provider: GitHub
