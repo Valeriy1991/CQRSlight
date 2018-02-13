@@ -43,7 +43,7 @@ deploy:
    api_key:
     secure: wk6IW8a6dwNs3kYmsFJDX2axqRt6fBE3A7X9MYptAp8= # '{nuget_api_key}'
    skip_symbols: true #false
-   symbol_server: https://your.symbol.server/feed
+   # symbol_server: https://your.symbol.server/feed
    artifact: /.*\.nupkg/
 
 # # Deploy to GitHub Releases
