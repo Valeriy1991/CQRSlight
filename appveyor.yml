@@ -61,15 +61,6 @@ deploy:
 #    secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
 #   skip_symbols: true
 #   artifact: /.*\.nupkg/
-
-# # Deploy to GitHub Releases
-# - provider: GitHub
-#   artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
-#   draft: false
-#   prerelease: false
-#   on:
-#     branch: master                # release from master branch only
-#     appveyor_repo_tag: true       # deploy on tag push only 
   
 # send notification to Slack about build results
 notifications:
