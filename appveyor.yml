@@ -46,15 +46,15 @@ artifacts:
  # For test
  #- path: CQRSlight\*.csproj
 
-deploy:
- - provider: NuGet
-   #server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
-   server: https://api.nuget.org/v3/index.json
-   api_key:
-    secure: '{nuget_api_key}'
-   skip_symbols: true #false
-   # symbol_server: https://your.symbol.server/feed
-   artifact: /.*\.nupkg/
+#deploy:
+# - provider: NuGet
+#   #server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
+#   server: https://api.nuget.org/v3/index.json
+#   api_key:
+#    secure: '{nuget_api_key}'
+#   skip_symbols: true #false
+#   # symbol_server: https://your.symbol.server/feed
+#   artifact: /.*\.nupkg/
 
 # # Deploy to GitHub Releases
 # - provider: GitHub
