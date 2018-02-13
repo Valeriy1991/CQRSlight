@@ -39,10 +39,9 @@ artifacts:
 
 deploy:
  - provider: NuGet
-   # remove to push to NuGet.org
-   server: https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3
+   server: https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3 # remove to push to NuGet.org
    api_key:
-    secure: '{nuget_api_key}'
+    secure: wk6IW8a6dwNs3kYmsFJDX2axqRt6fBE3A7X9MYptAp8= # '{nuget_api_key}'
    skip_symbols: true #false
    symbol_server: https://your.symbol.server/feed
    artifact: /.*\.nupkg/
