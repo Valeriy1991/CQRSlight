@@ -1,7 +1,7 @@
-﻿version: 1.0.{build}
-
-environment:
+﻿environment:
   version_suffix: alpha
+  
+version: 1.0.0-$(version_suffix){build}
 
 branches:
   except:
@@ -13,11 +13,11 @@ configuration: Release
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{version}$(version_suffix)$(appveyor_build_version)'
-  package_version: '{version}$(version_suffix)$(appveyor_build_version)'
-  assembly_version: '{version}$(version_suffix)$(appveyor_build_version)'
-  file_version: '{version}$(version_suffix)$(appveyor_build_version)'
-  informational_version: '{version}$(version_suffix)$(appveyor_build_version)'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
 
 # restore Nuget packages before build:
