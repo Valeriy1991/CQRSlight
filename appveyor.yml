@@ -31,10 +31,10 @@ build:
   verbosity: minimal
 
 artifacts:
-  #path: CQRSlight\bin\$(configuration)\**\*.nupkg
-  path: '**\*.nupkg'
+  #- path: CQRSlight\bin\$(configuration)\**\*.nupkg
+  - path: '**\*.nupkg'
   
-  path: CQRSlight\*.csproj
+  - path: CQRSlight\*.csproj
 
 #deploy:
 # - provider: NuGet
