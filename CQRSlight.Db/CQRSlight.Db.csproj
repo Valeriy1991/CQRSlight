@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Authors>Abakumov Valeriy</Authors>
+    <Company />
+    <Product />
+    <Description>Simple database-adapted abstractions for *Command and *Query parts of CQRS pattern</Description>
+    <PackageProjectUrl>https://github.com/Valeriy1991/CQRSlight</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Valeriy1991/CQRSlight</RepositoryUrl>
+    <PackageTags>CQRS CQS Command Query pattern Database DB DbConn DbExecutor</PackageTags>
+    <PackageVersion />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DbConn.DbExecutor.Abstract" Version="1.0.16-alpha" />
+    <PackageReference Include="Ether.Outcomes" Version="2.9.2-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CQRSlight\CQRSlight.csproj" />
+  </ItemGroup>
+
+</Project>
