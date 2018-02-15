@@ -1,7 +1,9 @@
-﻿namespace CQRSlight.Abstract.Commands
+﻿using Ether.Outcomes;
+
+namespace CQRSlight.Abstract
 {
-    public interface ICommand
+    public interface ICommand<in TCommandContext>
     {
-        
+        IOutcome Execute(TCommandContext commandContext);
     }
 }

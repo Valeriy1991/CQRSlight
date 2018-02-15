@@ -1,7 +1,9 @@
-﻿namespace CQRSlight.Abstract
+﻿using Ether.Outcomes;
+
+namespace CQRSlight.Abstract
 {
-    public interface IChecker
+    public interface IChecker<in TEntity>
     {
-        
+        IOutcome IsValid(TEntity entity);
     }
 }
