@@ -14,4 +14,8 @@
     <PackageVersion />
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ether.Outcomes" Version="2.9.2-alpha" />
+  </ItemGroup>
+
 </Project>
