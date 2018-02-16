@@ -42,14 +42,15 @@ Install-Package CQRSlight.Db
 ```
 
 ## Description
-### CQRSlight
+
+#### CQRSlight
 
 Contains 3 components:
 1. IChecker
 2. ICommand
 3. IQuery
 
-#### How to use
+##### How to use
 
 1. Add reference for `CQRSlight` to your project
 2. Create your some `Query`:
@@ -104,14 +105,16 @@ public class CreatingUserEmailChecker : IChecker<User>
 }
 ```
 
-### CQRSlight.Db
+---
+
+#### CQRSlight.Db
 
 Contains 3 components:
 1. DbQuery
 2. DbCommand
 3. IDbChecker
 
-#### How to use
+##### How to use
 1. Add reference for `CQRSlight.Dn` to your project
 2. Create your `Query` without any input parameters:
 ```csharp
@@ -120,7 +123,7 @@ public class BlockedUserQuery : DbQuery<List<User>>
     public BlockedUserQuery(IDbExecutor dbExecutor) : base(dbExecutor)
     {}
 
-    public List<User> Get()
+    public override List<User> Get()
     {
         var sql = $@"
 select u.*
@@ -139,7 +142,7 @@ public class UserByEmailQuery : DbQuery<string, User>
     public UserByEmailQuery(IDbExecutor dbExecutor) : base(dbExecutor)
     {}
 
-    public User Get(string email)
+    public override User Get(string email)
     {
         var sql = $@"
 select u.*
@@ -148,6 +151,80 @@ where u.Email = '{email}'
 ";
         var user = dbExecutor.Query<User>(sql).FirstOrDefault();
         return user;
+    }
+}
+```
+3. Also you can create some `Command`:
+```csharp
+public class ResetUserPasswordCommand : DbCommand<int>
+{
+    public ResetUserPasswordCommand(IDbExecutor dbExecutor) : base(dbExecutor)
+    {}
+
+    public override IOutcome Execute(int userId)
+    {        
+        try
+        {
+            var userByIdQuery = new UserByIdQuery(DbExecutor);
+            var user = userByIdQuery.Get(userId);
+            if(user != null)
+            {
+                // ... Reset user password
+
+                var sql = $@"exec dbo.ResetPassword @userId = {userId}";
+                DbExecutor.Execute(sql);
+
+                // ... Send email
+
+                return Outcomes.Success();
+            }
+            return Outcomes.Failure().WithMessage("User not found");
+        }
+        catch(Exception ex)
+        {
+            return Outcomes.Failure().FromException(ex);
+        }
+    }
+} 
+```
+
+---
+
+#### What about Checkers?
+
+Checkers (classes that implements `IChecker` or `IDbChecker` interfaces) 
+must be usefull (also as Query) inside of Commands. For example:
+```csharp
+public class AddNewAccountToUserCommand : DbCommand<Account>
+{
+    public AddNewAccountToUserCommand(IDbExecutor dbExecutor) : base(dbExecutor)
+    {}
+
+    public override IOutcome Execute(Account userAccount)
+    {
+        var accountChecker = new UserAccountChecker(DbExecutor);
+        var checkAccountResult = accountChecker.IsValid(userAccount);
+        var accountIsValid = checkAccountResult.Success();
+        if(!accountIsValid)
+            return checkAccountResult;
+        
+        try
+        {
+            // ... Creating new account for user
+
+            var sql = $@"
+insert into dbo.UserAccount ...
+";
+            DbExecutor.Execute(sql);
+            DbExecutor.Commit(); // If DbExecutor was created as transactional
+
+            return Outcomes.Success();
+        }
+        catch(Exception ex)
+        {
+            DbExecutor.Rollback();
+            return Outcomes.Failure().FromException(ex);
+        }
     }
 }
 ```
