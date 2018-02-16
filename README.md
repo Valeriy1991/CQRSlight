@@ -115,7 +115,7 @@ Contains 3 components:
 3. IDbChecker
 
 ##### How to use
-1. Add reference for `CQRSlight.Dn` to your project
+1. Add reference for `CQRSlight.Db` to your project
 2. Create your `Query` without any input parameters:
 ```csharp
 public class BlockedUserQuery : DbQuery<List<User>>
