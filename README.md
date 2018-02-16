@@ -23,7 +23,7 @@ https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3
 Project|Dependency
 -|-
 CQRSlight|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes)
-CQRSlight.Db|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes) [DbConn.DbExecutor.Abstract](https://github.com/Valeriy1991/DbExecutor)
+CQRSlight.Db|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes), [DbConn.DbExecutor.Abstract](https://github.com/Valeriy1991/DbExecutor)
 
 ## Installation
 
