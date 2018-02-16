@@ -1,6 +1,5 @@
 ﻿environment:
   version_suffix: alpha
-  nuget_api_key: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7
   
 version: 1.0.0-$(version_suffix){build}
 
@@ -8,9 +7,6 @@ version: 1.0.0-$(version_suffix){build}
 branches:
   except:
   - master
-
-# Do not build feature branch with open Pull Requests
-skip_branch_with_pr: true
 
 image: Visual Studio 2017
 
@@ -43,33 +39,4 @@ build:
   verbosity: minimal
 
 artifacts:
- #- path: CQRSlight\bin\$(configuration)\**\*.nupkg
- - path: '**\*.nupkg'  
- # For test
- #- path: CQRSlight\*.csproj
-
-deploy:
- - provider: NuGet
-   name: dev
-   server: https://ci.appveyor.com/nuget/valeriy1991 # remove to push to NuGet.org
-   api_key:
-    secure: m9mXfgL3RpGeznuLZm94nyhU7+Awk2jr5eddNy8Sw8Y=
-   skip_symbols: true
-   artifact: /.*\.nupkg/
-
-# - provider: NuGet
-#   name: production
-#   server: 
-#   api_key:
-#    secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
-#   skip_symbols: true
-#   artifact: /.*\.nupkg/
-  
-# send notification to Slack about build results
-notifications:
- - provider: Slack
-   incoming_webhook: https://hooks.slack.com/services/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
-   channel: builds
-   on_build_success: true
-   on_build_failure: true
-   on_build_status_changed: true
+ - path: '**\*.nupkg'

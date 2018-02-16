@@ -1,16 +1,16 @@
 ﻿environment:
   version_suffix: alpha
-  nuget_api_key: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7
   
-version: 1.0.0-$(version_suffix){build}
+version: 1.0.1-$(version_suffix){build}
 
 # branches to build
 branches:
   only:
   - master
 
-# Do not build feature branch with open Pull Requests
-skip_branch_with_pr: true
+# Do not build on tags (GitHub and BitBucket)
+# Valeriy1991: Because tags created by GitHub Release deployment configuration
+skip_tags: true
 
 image: Visual Studio 2017
 
@@ -43,34 +43,34 @@ build:
   verbosity: minimal
 
 artifacts:
- #- path: CQRSlight\bin\$(configuration)\**\*.nupkg
- - path: '**\*.nupkg'  
- # For test
- #- path: CQRSlight\*.csproj
+ - path: '**\*.nupkg' 
 
 deploy:
  - provider: NuGet
    name: production
    server: 
    api_key:
-    secure: hCYZb1qY+PIMKQZ21VS2lkCBSvrEUzFvEXrV/mTmpa+f5DDh4YtGowrmOAhpVrD7 #'{nuget_api_key}'
+    secure: '$(nuget_api_key)'
    skip_symbols: true
    artifact: /.*\.nupkg/
 
-# Deploy to GitHub Releases
-# - provider: GitHub
-#   artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
-#   draft: false
-#   prerelease: false
-#   on:
-#     branch: master                # release from master branch only
-#     appveyor_repo_tag: true       # deploy on tag push only 
+ - provider: GitHub
+   name: production-GitHub
+   description: ''
+   artifact: /.*\.nupkg/           # upload all NuGet packages to release assets
+   draft: true
+   prerelease: true # TODO: (version_suffix != string.empty) ? true : false
+   auth_token:
+     secure: '$(github_release_api_key)'
+   on:
+     branch: master                # release from master branch only
+     #appveyor_repo_tag: true       # deploy on tag push only 
   
 # send notification to Slack about build results
 notifications:
  - provider: Slack
    incoming_webhook: https://hooks.slack.com/services/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
-   channel: builds
+   channel: releases
    on_build_success: true
    on_build_failure: true
    on_build_status_changed: true
