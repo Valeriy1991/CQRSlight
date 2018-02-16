@@ -13,3 +13,4 @@ dev|[![Build status](https://ci.appveyor.com/api/projects/status/mue5kwt3l2a9hng
 
 ## AppVeyor development Nuget project feed
 https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3
+
