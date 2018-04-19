@@ -93,7 +93,7 @@ public class CreateUserCommand : ICommand<CreateUserCommandContext>
 ```csharp
 public class CreatingUserEmailChecker : IChecker<User>
 {
-    public IsValid(User creatingUser)
+    public IOutcome IsValid(User creatingUser)
     {
         if(string.isNullOrWhiteSpace(creatingUser.Email))
             return Outcomes.Failure().WithMessage($"Email is required.")
