@@ -52,7 +52,7 @@ Contains 3 components:
 
 ##### How to use
 
-1. Add reference for `CQRSlight` to your project
+1. Install the package `CQRSlight` to your project
 2. Create your some `Query`:
 ```csharp
 public class BlockedUserQuery : IQuery<List<User>>
@@ -115,7 +115,7 @@ Contains 3 components:
 3. IDbChecker
 
 ##### How to use
-1. Add reference for `CQRSlight.Dn` to your project
+1. Install the package `CQRSlight.Db` to your project
 2. Create your `Query` without any input parameters:
 ```csharp
 public class BlockedUserQuery : DbQuery<List<User>>
