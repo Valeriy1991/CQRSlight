@@ -52,7 +52,7 @@ Contains 3 components:
 
 ##### How to use
 
-1. Add reference for `CQRSlight` to your project
+1. Install the package `CQRSlight` to your project
 2. Create your some `Query`:
 ```csharp
 public class BlockedUserQuery : IQuery<List<User>>
@@ -93,7 +93,7 @@ public class CreateUserCommand : ICommand<CreateUserCommandContext>
 ```csharp
 public class CreatingUserEmailChecker : IChecker<User>
 {
-    public IsValid(User creatingUser)
+    public IOutcome IsValid(User creatingUser)
     {
         if(string.isNullOrWhiteSpace(creatingUser.Email))
             return Outcomes.Failure().WithMessage($"Email is required.")
@@ -115,7 +115,7 @@ Contains 3 components:
 3. IDbChecker
 
 ##### How to use
-1. Add reference for `CQRSlight.Db` to your project
+1. Install the package `CQRSlight.Db` to your project
 2. Create your `Query` without any input parameters:
 ```csharp
 public class BlockedUserQuery : DbQuery<List<User>>
