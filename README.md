@@ -93,7 +93,7 @@ public class CreateUserCommand : ICommand<CreateUserCommandContext>
 ```csharp
 public class CreatingUserEmailChecker : IChecker<User>
 {
-    public IOutcome Validate(User creatingUser)
+    public IOutcome Check(User creatingUser)
     {
         if(string.isNullOrWhiteSpace(creatingUser.Email))
             return Outcomes.Failure().WithMessage($"Email is required.")
@@ -203,7 +203,7 @@ public class AddNewAccountToUserCommand : DbCommand<Account>
     public override IOutcome Execute(Account userAccount)
     {
         var accountChecker = new UserAccountChecker(DbExecutor);
-        var checkAccountResult = accountChecker.Validate(userAccount);
+        var checkAccountResult = accountChecker.Check(userAccount);
         var accountIsValid = checkAccountResult.Success();
         if(!accountIsValid)
             return checkAccountResult;
