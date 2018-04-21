@@ -23,7 +23,7 @@ https://ci.appveyor.com/nuget/cqrslight-v185sxsmoqs3
 Project|Dependency
 -|-
 CQRSlight|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes)
-CQRSlight.Db|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes) [DbConn.DbExecutor.Abstract](https://github.com/Valeriy1991/DbExecutor)
+CQRSlight.Db|[Ether.Outcomes](https://github.com/kinetiq/Ether.Outcomes), [DbConn.DbExecutor.Abstract](https://github.com/Valeriy1991/DbExecutor)
 
 ## Installation
 
@@ -93,7 +93,7 @@ public class CreateUserCommand : ICommand<CreateUserCommandContext>
 ```csharp
 public class CreatingUserEmailChecker : IChecker<User>
 {
-    public IOutcome IsValid(User creatingUser)
+    public IOutcome Validate(User creatingUser)
     {
         if(string.isNullOrWhiteSpace(creatingUser.Email))
             return Outcomes.Failure().WithMessage($"Email is required.")
@@ -203,7 +203,7 @@ public class AddNewAccountToUserCommand : DbCommand<Account>
     public override IOutcome Execute(Account userAccount)
     {
         var accountChecker = new UserAccountChecker(DbExecutor);
-        var checkAccountResult = accountChecker.IsValid(userAccount);
+        var checkAccountResult = accountChecker.Validate(userAccount);
         var accountIsValid = checkAccountResult.Success();
         if(!accountIsValid)
             return checkAccountResult;
