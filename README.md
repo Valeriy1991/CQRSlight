@@ -112,7 +112,7 @@ public class CreatingUserEmailChecker : IChecker<User>
 Contains 3 components:
 1. DbQuery
 2. DbCommand
-3. IDbChecker
+3. DbChecker
 
 ##### How to use
 1. Install the package `CQRSlight.Db` to your project
@@ -192,7 +192,7 @@ public class ResetUserPasswordCommand : DbCommand<int>
 
 #### What about Checkers?
 
-Checkers (classes that implements `IChecker` or `IDbChecker` interfaces) 
+Checkers (classes that implements `IChecker` interface or abstract class `DbChecker`) 
 must be usefull (also as Query) inside of Commands. For example:
 ```csharp
 public class AddNewAccountToUserCommand : DbCommand<Account>
