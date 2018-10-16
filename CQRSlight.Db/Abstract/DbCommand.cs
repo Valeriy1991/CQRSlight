@@ -5,6 +5,20 @@ using Ether.Outcomes;
 
 namespace CQRSlight.Db.Abstract
 {
+    public abstract class DbCommand<TCommandContext, TResult> : ICommand<TCommandContext, TResult>
+    {
+        protected IDbExecutor DbExecutor { get; }
+
+        protected DbCommand(IDbExecutor dbExecutor)
+        {
+            if (dbExecutor == null)
+                throw new ArgumentNullException(nameof(dbExecutor));
+            DbExecutor = dbExecutor;
+        }
+
+        public abstract IOutcome<TResult> Execute(TCommandContext commandContext);
+    }
+
     public abstract class DbCommand<TCommandContext> : ICommand<TCommandContext>
     {
         protected IDbExecutor DbExecutor { get; }
