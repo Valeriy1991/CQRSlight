@@ -46,9 +46,16 @@ Install-Package CQRSlight.Db
 #### CQRSlight
 
 Contains 3 components:
+
 1. IChecker
 2. ICommand
 3. IQuery
+
+and it's async versions:
+
+1. ICheckerAsync
+2. ICommandAsync
+3. IQueryAsync
 
 ##### How to use
 
@@ -110,11 +117,19 @@ public class CreatingUserEmailChecker : IChecker<User>
 #### CQRSlight.Db
 
 Contains 3 components:
-1. DbQuery
-2. DbCommand
-3. DbChecker
+
+1. DbChecker
+2. DbQuery
+3. DbCommand
+
+and it's async versions:
+
+1. DbCheckerAsync
+2. DbQueryAsync
+3. DbCommandAsync
 
 ##### How to use
+
 1. Install the package `CQRSlight.Db` to your project
 2. Create your `Query` without any input parameters:
 ```csharp
