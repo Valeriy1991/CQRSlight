@@ -5,7 +5,7 @@ using DbConn.DbExecutor.Abstract;
 
 namespace CQRSlight.Db.Abstract
 {
-    public abstract class DbQueryAsync<TContext, TResult> : IQueryAsync<TContext, TResult>
+    public abstract class DbQueryAsync<TRequest, TResult> : IQueryAsync<TRequest, TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
@@ -16,7 +16,7 @@ namespace CQRSlight.Db.Abstract
             DbExecutor = dbExecutor;
         }
 
-        public abstract Task<TResult> GetAsync(TContext context);
+        public abstract Task<TResult> GetAsync(TRequest request);
     }
 
     public abstract class DbQueryAsync<TResult> : IQueryAsync<TResult>

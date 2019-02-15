@@ -4,7 +4,7 @@ using DbConn.DbExecutor.Abstract;
 
 namespace CQRSlight.Db.Abstract
 {
-    public abstract class DbQuery<TContext, TResult> : IQuery<TContext, TResult>
+    public abstract class DbQuery<TRequest, TResult> : IQuery<TRequest, TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
@@ -15,7 +15,7 @@ namespace CQRSlight.Db.Abstract
             DbExecutor = dbExecutor;
         }
 
-        public abstract TResult Get(TContext context);
+        public abstract TResult Get(TRequest request);
     }
 
     public abstract class DbQuery<TResult> : IQuery<TResult>
