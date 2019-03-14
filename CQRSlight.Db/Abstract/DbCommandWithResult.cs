@@ -1,35 +1,36 @@
 ﻿using System;
-using System.Threading.Tasks;
 using CQRSlight.Abstract;
 using DbConn.DbExecutor.Abstract;
+using Ether.Outcomes;
 
 namespace CQRSlight.Db.Abstract
 {
-    public abstract class DbQueryAsync<TRequest, TResult> : IQueryAsync<TRequest, TResult>
+    public abstract class DbCommandWithResult<TResult> : ICommandWithResult<TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
-        protected DbQueryAsync(IDbExecutor dbExecutor)
+        protected DbCommandWithResult(IDbExecutor dbExecutor)
         {
             if (dbExecutor == null)
                 throw new ArgumentNullException(nameof(dbExecutor));
             DbExecutor = dbExecutor;
         }
 
-        public abstract Task<TResult> GetAsync(TRequest request);
+        public abstract IOutcome<TResult> Execute();
     }
 
-    public abstract class DbQueryAsync<TResult> : IQueryAsync<TResult>
+    public abstract class DbCommandWithResult<TCommandRequest, TResult> : 
+        ICommandWithResult<TCommandRequest, TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
-        protected DbQueryAsync(IDbExecutor dbExecutor)
+        protected DbCommandWithResult(IDbExecutor dbExecutor)
         {
             if (dbExecutor == null)
                 throw new ArgumentNullException(nameof(dbExecutor));
             DbExecutor = dbExecutor;
         }
 
-        public abstract Task<TResult> GetAsync();
+        public abstract IOutcome<TResult> Execute(TCommandRequest commandRequest);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace CQRSlight.Abstract
 {
-    public interface IQueryAsync<in TContext, TResult>
+    public interface IQueryAsync<in TRequest, TResult>
     {
-        Task<TResult> GetAsync(TContext context);
+        Task<TResult> GetAsync(TRequest request);
     }
 
     public interface IQueryAsync<TResult>

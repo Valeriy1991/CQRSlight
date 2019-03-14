@@ -1,8 +1,8 @@
 ﻿namespace CQRSlight.Abstract
 {
-    public interface IQuery<in TContext, out TResult>
+    public interface IQuery<in TRequest, out TResult>
     {
-        TResult Get(TContext context);
+        TResult Get(TRequest request);
     }
 
     public interface IQuery<out TResult>
