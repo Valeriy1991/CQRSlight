@@ -3,13 +3,13 @@ using Ether.Outcomes;
 
 namespace CQRSlight.Abstract
 {
-    public interface ICommandAsync<in TCommandContext, TResult>
+    public interface ICommandAsync
     {
-        Task<IOutcome<TResult>> ExecuteAsync(TCommandContext commandContext);
+        Task<IOutcome> ExecuteAsync();
     }
 
-    public interface ICommandAsync<in TCommandContext>
+    public interface ICommandAsync<in TCommandRequest>
     {
-        Task<IOutcome> ExecuteAsync(TCommandContext commandContext);
+        Task<IOutcome> ExecuteAsync(TCommandRequest commandRequest);
     }
 }

@@ -45,17 +45,19 @@ Install-Package CQRSlight.Db
 
 #### CQRSlight
 
-Contains 3 components:
+Contains multiple main components:
 
-1. IChecker
-2. ICommand
-3. IQuery
+1. `IChecker`
+2. `IQuery`
+2. `ICommand`
+2. `ICommandWithResult`
 
 and it's async versions:
 
-1. ICheckerAsync
-2. ICommandAsync
-3. IQueryAsync
+1. `ICheckerAsync`
+2. `IQueryAsync`
+2. `ICommandAsync`
+2. `ICommandWithResultAsync`
 
 ##### How to use
 
@@ -72,14 +74,14 @@ public class BlockedUserQuery : IQuery<List<User>>
 ```
 3. Create your some `Command`:
 ```csharp
-public class CreateUserCommand : ICommand<CreateUserCommandContext>
+public class CreateUserCommand : ICommand<CreateUserCommandRequest>
 {
     private readonly PasswordHasher _passwordHasher = new PasswordHasher();
 
-    public IOutcome Execute(CreateUserCommandContext commandContext)
+    public IOutcome Execute(CreateUserCommandRequest commandRequest)
     {
-        var email = commandContext.Email;
-        var password = commandContext.Password;
+        var email = commandRequest.Email;
+        var password = commandRequest.Password;
         
         var passwordHash = _passwordHasher.GetHash(password);
 
@@ -116,17 +118,19 @@ public class CreatingUserEmailChecker : IChecker<User>
 
 #### CQRSlight.Db
 
-Contains 3 components:
+Contains components:
 
-1. DbChecker
-2. DbQuery
-3. DbCommand
+1. `DbChecker`
+2. `DbQuery`
+2. `DbCommand`
+2. `DbCommandWithResult`
 
 and it's async versions:
 
-1. DbCheckerAsync
-2. DbQueryAsync
-3. DbCommandAsync
+1. `DbCheckerAsync`
+2. `DbQueryAsync`
+2. `DbCommandAsync`
+2. `DbCommandWithResultAsync`
 
 ##### How to use
 

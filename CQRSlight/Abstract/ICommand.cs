@@ -2,13 +2,14 @@
 
 namespace CQRSlight.Abstract
 {
-    public interface ICommand<in TCommandContext, TResult>
+
+    public interface ICommand
     {
-        IOutcome<TResult> Execute(TCommandContext commandContext);
+        IOutcome Execute();
     }
 
-    public interface ICommand<in TCommandContext>
+    public interface ICommand<in TCommandRequest>
     {
-        IOutcome Execute(TCommandContext commandContext);
+        IOutcome Execute(TCommandRequest commandRequest);
     }
 }

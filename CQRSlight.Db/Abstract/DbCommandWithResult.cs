@@ -5,31 +5,32 @@ using Ether.Outcomes;
 
 namespace CQRSlight.Db.Abstract
 {
-    public abstract class DbCommand : ICommand
+    public abstract class DbCommandWithResult<TResult> : ICommandWithResult<TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
-        protected DbCommand(IDbExecutor dbExecutor)
+        protected DbCommandWithResult(IDbExecutor dbExecutor)
         {
             if (dbExecutor == null)
                 throw new ArgumentNullException(nameof(dbExecutor));
             DbExecutor = dbExecutor;
         }
 
-        public abstract IOutcome Execute();
+        public abstract IOutcome<TResult> Execute();
     }
 
-    public abstract class DbCommand<TCommandRequest> : ICommand<TCommandRequest>
+    public abstract class DbCommandWithResult<TCommandRequest, TResult> : 
+        ICommandWithResult<TCommandRequest, TResult>
     {
         protected IDbExecutor DbExecutor { get; }
 
-        protected DbCommand(IDbExecutor dbExecutor)
+        protected DbCommandWithResult(IDbExecutor dbExecutor)
         {
             if (dbExecutor == null)
                 throw new ArgumentNullException(nameof(dbExecutor));
             DbExecutor = dbExecutor;
         }
 
-        public abstract IOutcome Execute(TCommandRequest commandRequest);
+        public abstract IOutcome<TResult> Execute(TCommandRequest commandRequest);
     }
 }

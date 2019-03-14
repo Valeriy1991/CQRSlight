@@ -6,7 +6,7 @@ using Ether.Outcomes;
 
 namespace CQRSlight.Db.Abstract
 {
-    public abstract class DbCommandAsync<TCommandContext, TResult> : ICommandAsync<TCommandContext, TResult>
+    public abstract class DbCommandAsync : ICommandAsync
     {
         protected IDbExecutor DbExecutor { get; }
 
@@ -17,10 +17,10 @@ namespace CQRSlight.Db.Abstract
             DbExecutor = dbExecutor;
         }
 
-        public abstract Task<IOutcome<TResult>> ExecuteAsync(TCommandContext commandContext);
+        public abstract Task<IOutcome> ExecuteAsync();
     }
 
-    public abstract class DbCommandAsync<TCommandContext> : ICommandAsync<TCommandContext>
+    public abstract class DbCommandAsync<TCommandRequest> : ICommandAsync<TCommandRequest>
     {
         protected IDbExecutor DbExecutor { get; }
 
@@ -31,6 +31,6 @@ namespace CQRSlight.Db.Abstract
             DbExecutor = dbExecutor;
         }
 
-        public abstract Task<IOutcome> ExecuteAsync(TCommandContext commandContext);
+        public abstract Task<IOutcome> ExecuteAsync(TCommandRequest commandRequest);
     }
 }
